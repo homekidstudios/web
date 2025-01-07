@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Educativa</title>
+
+    <link rel="icon" href="Imagenes/icono de la pagina.png" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(to right, #2c3e50, #34495e);
+            color: white;
+            padding: 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-left a, .nav-right a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-left a:hover, .nav-right a:hover {
+            color: #1abc9c;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 25px;
+        }
+
+        .download-btn {
+            background-color: #1abc9c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #16a085;
+        }
+
+        .social-icons img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+        }
+
+        main {
+            flex: 1;
+        }
+
+/* Contenedor de las asignaturas */
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres elementos en la primera fila */
+    gap: 20px; /* Espacio entre los contenedores */
+    padding: 20px;
+    justify-items: center; /* Centra los elementos */
+}
+
+/* Contenedor de cada asignatura */
+.subject {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0; /* Eliminamos padding para mantener la forma cuadrada */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Usamos 100% del espacio disponible */
+    aspect-ratio: 1; /* Esto hace que el contenedor sea cuadrado */
+    max-width: 300px; /* Limita el tamaño máximo */
+    height: auto; /* Asegura que la altura se ajusta proporcionalmente */
+}
+
+/* Estilos para la imagen dentro de los contenedores */
+.subject img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 70%; /* La imagen ocupará el 70% del espacio disponible */
+    object-fit: cover; /* Asegura que la imagen no se distorsione */
+    border-radius: 10px;
+    margin-bottom: 10px; /* Separa la imagen del título */
+}
+
+.subject:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los contenedores al centro */
+.container-centro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos elementos al centro */
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+
+        .subject {
+         background-color: white;
+         border: 1px solid #ccc;
+         border-radius: 10px;
+         padding: 30px; /* Aumentar el padding para hacer el contenedor más grande */
+         text-align: center;
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+         cursor: pointer;
+         transition: transform 0.3s, box-shadow 0.3s;
+         position: relative;
+         overflow: hidden; /* Asegura que las imágenes no se desborden */
+        }
+
+        .subject img {
+         width: 100%; /* La imagen ocupará todo el ancho del contenedor */
+         height: 200px; /* Ajustamos una altura fija para las imágenes */
+         object-fit: cover; /* Asegura que la imagen se recorte bien sin distorsionarse */
+         border-radius: 10px;
+        }
+
+        .subject:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .participants {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .download-btn {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+        }
+
+    /* Contenedor principal del slider */
+    .slider-container {
+            width: 10px; /* El contenedor es pequeño al inicio */
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            transition: width 0.5s ease; /* Transición para que se expanda */
+            z-index: 1000;
+        }
+
+        /* Los colaboradores estarán ocultos hasta que el contenedor se expanda */
+        .collaborators {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            display: none; /* Ocultamos los colaboradores inicialmente */
+        } 
+
+        .collaborator {
+            width: 80px; /* Puedes ajustar el tamaño */
+            margin-bottom: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .collaborator img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+
+        /* Estilo de la flecha que aparece en el lado derecho */
+        .slider-button {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #666;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+            font-size: 15px;
+        }
+
+        /* Al pasar el mouse sobre el contenedor, se expande y muestra los colaboradores */
+        .slider-container:hover {
+            width: 250px;
+        }
+
+        .slider-container:hover .collaborators {
+            display: flex; /* Muestra los colaboradores al pasar el cursor */
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-left">
+            <a href="#">Collaborators</a>
+            <a href="#">Statistics</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="logo">
+            <img src="Imagenes/icono.png" alt="Logo">
+            <span>EUFONIA STUDIO</span>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="download-btn">
+                <img src="download-icon.png" alt="Download"> Download Eufonia Client
+            </a>
+            <div class="social-icons">
+                <img src="instagram-icon.png" alt="Instagram">
+                <img src="discord-icon.png" alt="Discord">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="subject" onclick="window.location.href='historia.html'">
+                <img src="Imagenes/Historia.jpg" alt="Historia">
+                Historia
+            </div>
+            <div class="subject" onclick="window.location.href='arte.html'">
+                <img src="Imagenes/Arte.jpg" alt="Arte">
+                Arte
+            </div>
+            <div class="subject" onclick="window.location.href='deporte.html'">
+                <img src="Imagenes/deporte.jpg" alt="Deporte">
+                Deporte
+            </div>
+            <div class="subject" onclick="window.location.href='ciencias.html'">
+                <img src="Imagenes/paisajes.jpg" alt="Ciencias Naturales">
+                Ciencias Naturales
+            </div>
+            <div class="subject" onclick="window.location.href='matematica.html'">
+                <img src="Imagenes/matematicas.jpg" alt="Matemática">
+                Matemática
+            </div>
+            <div class="subject" onclick="window.location.href='estudios_sociales.html'">
+                <img src="Imagenes/lenguaje.jpeg" alt="Lengua Literatura">
+                Lengua Literatura
+            </div>
+        </section>
+        
+        <!-- Contenedor al centro: dos asignaturas -->
+        <section class="container-centro">
+            <div class="subject" onclick="window.location.href='ingles.html'">
+                <img src="Imagenes/Ingles.jpg" alt="Inglés">
+                Inglés
+            </div>
+            <div class="subject" onclick="window.location.href='juegos.html'">
+                <img src="Imagenes/juegos.png" alt="Juegos">
+                Juegos
+            </div>
+        </section>
+    </main>
+
+<!-- Contenedor deslizante -->
+<div class="slider-container">
+    <button class="slider-button">→</button> <!-- Flecha para indicar que se puede deslizar -->
+    <div class="collaborators">
+        <div class="collaborator">
+            <img src="ruta-de-la-imagen1.jpg" alt="Colaborador 1">
+            <p>Colaborador 1</p>
+        </div>
+        <div class="collaborator">
+            <img src="ruta-de-la-imagen2.jpg" alt="Colaborador 2">
+            <p>Colaborador 2</p>
+        </div>
+        <div class="collaborator">
+            <img src="ruta-de-la-imagen3.jpg" alt="Colaborador 3">
+            <p>Colaborador 3</p>
+        </div>
+    </div>
+</div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Página Educativa. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
